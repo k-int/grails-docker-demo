@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         // Add Gradle Docker plugin.
-        classpath 'com.bmuschko:gradle-docker-plugin:2.6.1'
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.11'
     }
 }
  
@@ -18,10 +18,10 @@ apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin
  
 ext {
     // Define tag for Docker image. Include project version and name.
-    dockerTag = "mrhaki/${project.name}:${project.version}".toLowerCase()
+    dockerTag = "knowint/${project.name}:${project.version}".toString()
  
     // Base name for Docker container with Grails application.
-    dockerContainerName = 'grails-sample'
+    dockerContainerName = 'ddemo'
  
     // Staging directory for create Docker image.
     dockerBuildDir = mkdir("${buildDir}/docker")
