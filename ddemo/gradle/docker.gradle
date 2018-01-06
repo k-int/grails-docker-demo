@@ -8,7 +8,9 @@ buildscript {
     }
 }
 
-apply plugin: 'com.bmuschko.docker-java-application'
+// https://geowarin.github.io/spring-boot-app-in-docker-image.html
+
+apply plugin: 'com.bmuschko.gradle.docker.dockerJavaApplication'
  
 import com.bmuschko.gradle.docker.tasks.image.*
  
