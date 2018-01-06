@@ -1,14 +1,16 @@
-// File: gradle/docker.gradle
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
         // Add Gradle Docker plugin.
-        classpath 'com.bmuschko:gradle-docker-plugin:3.0.11'
+        classpath 'com.bmuschko:gradle-docker-plugin:3.2.1'
     }
 }
+
+apply plugin: 'com.bmuschko.docker-java-application'
  
+import com.bmuschko.gradle.docker.tasks.image.*
  
 // Add Gradle Docker plugin.
 // Use plugin type, because this script is used with apply from:
@@ -18,10 +20,9 @@ buildscript {
 // apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin
 // 
 
-apply plugin: com.bmuschko.docker-java-application
  
 docker {
-    javaApplication {java:oracle-java8
+    javaApplication {
         baseImage = 'dockerfile/java:oracle-java8'
         // baseImage = 'dockerfile/java:openjdk-7-jre'
         maintainer = 'Ian Ibbotson (ian.ibbotson@k-int.com)'
@@ -30,7 +31,7 @@ docker {
         tag = 'ddemo:0.001'
         exec {
             defaultCommand 'server'
-            entryPoint 'docker-entrypoint.sh'
+            entryPoint 'build/docker/docker-entrypoint.sh'
         }
     }
 }
